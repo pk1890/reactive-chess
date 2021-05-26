@@ -1,0 +1,11 @@
+USER_ID=1000
+GROUP_ID=1000
+
+WORKER_PROCESSES=1
+
+LISTEN_ON=8010
+
+DATABASE_URL=postgresql://reactivechess:test_db_password@postgres:5432/reactivechess?encoding=utf8&pool=5&timeout=5000
+
+CACHE_URL=redis://redis:6379/0
+JOB_WORKER_URL=redis://redis:6379/0

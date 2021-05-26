@@ -1,0 +1,19 @@
+FROM ruby:3.0.1 AS rails-base
+
+ARG USER_ID
+ARG GROUP_ID
+
+RUN apt-get update && apt-get install -y nano
+RUN addgroup --gid $GROUP_ID user
+RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
+
+ENV INSTALL_PATH /opt/app
+RUN mkdir -p $INSTALL_PATH
+
+RUN gem install rails bundler
+RUN chown -R user:user $INSTALL_PATH
+RUN chmod -R 777 /usr/local/bundle
+WORKDIR $INSTALL_PATH
+
+USER $USER_ID
+CMD ["/bin/sh"]
